@@ -1,0 +1,1 @@
+web: java -Dspring.profiles.active=default,light -Dserver.port=$PORT $JAVA_OPTS $JAVA_TOOL_OPTIONS -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+UseConcMarkSweepGC -jar build/libs/doctor-1.0-SNAPSHOT.jar

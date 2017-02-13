@@ -1,0 +1,59 @@
+buildscript {
+  repositories {
+    maven { url 'https://plugins.gradle.org/m2/' }
+  }
+  dependencies {
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE'
+    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.1'
+  }
+}
+
+group 'com.marclucchini'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'com.github.kt3k.coveralls'
+
+allprojects {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+  mavenCentral()
+  jcenter()
+}
+
+dependencies {
+  compile group: 'edu.uci.ics', name: 'crawler4j', version: '4.2'
+  compile group: 'io.searchbox', name: 'jest', version: '2.0.4'
+  compile group: 'io.springfox', name:'springfox-swagger2', version: '2.4.0'
+  compile group: 'io.springfox', name:'springfox-swagger-ui', version: '2.4.0'
+  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+  compile group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.7'
+  compile group: 'org.elasticsearch.client', name: 'transport', version: '5.2.0'
+  compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.1.RELEASE'
+  testCompile group: 'junit', name: 'junit', version: '4.12'
+  testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.1.RELEASE'
+}
+
+checkstyle {
+  toolVersion = '7.5.1'
+}
+
+jacocoTestReport {
+  reports {
+    xml.enabled true
+  }
+}
+
+tasks.withType(Checkstyle) {
+  configFile rootProject.file('checkstyle.xml')
+  ignoreFailures false
+}
+
+task stage(dependsOn: ['clean', 'build'])
+build.mustRunAfter clean

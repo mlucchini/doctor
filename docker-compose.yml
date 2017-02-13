@@ -1,0 +1,15 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - es
+    entrypoint: ["/app/tools/wait-for-elasticsearch", "es:9200", "java -Dspring.profiles.active=default,light -Dserver.port=8080 -jar /app/doctor.jar"]
+    environment:
+      BONSAI_URL: http://es:9200
+  es:
+    image: elasticsearch:5.2.0-alpine
+    ports:
+      - "9200:9200"

@@ -1,0 +1,22 @@
+spring:
+  profiles.active: default
+---
+spring:
+  profiles: default
+doctor:
+  seed: http://www.nhs.uk/Conditions/Pages/hub.aspx
+  visit:
+    - http://www\.nhs\.uk/[cC]onditions/Pages/BodyMap\.aspx\?Index=[A-Z0-9-]+
+  document:
+    - http://www\.nhs\.uk/[cC]onditions/[^/\.]+
+    - http://www\.nhs\.uk/[cC]onditions/.+\.aspx$
+  parallelism: 1
+  database: db.json
+---
+# Profile for environments like Heroku where free dynos and the ES cluster on Heroku have low specs
+spring:
+  profiles: light
+doctor:
+  document:
+    - http://www.nhs.uk/conditions/[^/]+/Pages/Introduction.aspx
+  database: db-light.json

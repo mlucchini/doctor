@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+host="$1"
+shift
+cmd="$@"
+
+until wget -qO- "http://$host/_cluster/health?wait_for_status=yellow&timeout=60s" &> /dev/null; do
+  echo "The Elasticsearch cluster is not ready yet - waiting"
+  sleep 2
+done
+
+echo "The Elasticsearch cluster is up - starting"
+exec $cmd
