@@ -27,8 +27,8 @@ public class Crawler extends WebCrawler {
   @Override
   public boolean shouldVisit(Page referringPage, WebURL url) {
     String href = url.getURL();
-    return visitUrls.stream().anyMatch((p) -> p.matcher(href).matches())
-      || documentUrls.stream().anyMatch((p) -> p.matcher(href).matches());
+    return visitUrls.stream().anyMatch(p -> p.matcher(href).matches())
+      || documentUrls.stream().anyMatch(p -> p.matcher(href).matches());
   }
 
   @Override

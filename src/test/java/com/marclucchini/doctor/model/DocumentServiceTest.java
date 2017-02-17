@@ -19,7 +19,7 @@ public class DocumentServiceTest {
   EsIndexer esIndexer;
 
   @Before
-  public void setup() {
+  public void setUp() {
     crawlerService = mock(CrawlerService.class);
     repository = mock(DocumentRepository.class);
     esIndexerStatus = mock(EsIndexerStatus.class);

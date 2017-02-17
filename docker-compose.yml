@@ -6,7 +6,7 @@ services:
       - "8080:8080"
     depends_on:
       - es
-    entrypoint: ["/app/tools/wait-for-elasticsearch", "es:9200", "java -Dspring.profiles.active=default,light -Dserver.port=8080 -jar /app/doctor.jar"]
+    entrypoint: ["/app/tools/wait-for-elasticsearch", "es:9200", "java -Dserver.port=8080 -jar /app/doctor.jar"]
     environment:
       BONSAI_URL: http://es:9200
   es:

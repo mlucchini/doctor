@@ -1,7 +1,9 @@
 # Doctor
-[![Build Status](https://travis-ci.org/mlucchini/doctor.svg?branch=master)](https://travis-ci.org/mlucchini/doctor)
-[![Coverage Status](https://coveralls.io/repos/github/mlucchini/doctor/badge.svg?branch=master)](https://coveralls.io/github/mlucchini/doctor?branch=master)
-[![Heroku](https://heroku-badge.herokuapp.com/?app=ml-doctor)]
+[![Build Status](https://img.shields.io/travis/mlucchini/doctor.svg)](https://travis-ci.org/mlucchini/doctor)
+[![SonarQube Test Coverage](https://img.shields.io/sonar/https/sonarqube.com/com.marclucchini:doctor/coverage.svg)](https://sonarqube.com/dashboard?id=com.marclucchini:doctor)
+[![SonarQube Tech Debt](https://img.shields.io/sonar/https/sonarqube.com/com.marclucchini:doctor/tech_debt.svg)](https://sonarqube.com/dashboard?id=com.marclucchini:doctor)
+[![Heroku Deployment](https://heroku-badge.herokuapp.com/?app=ml-doctor&root=swagger-ui.html&svg=1)](https://ml-doctor.herokuapp.com/swagger-ui.html)
+[![Docker Automated Build](https://img.shields.io/docker/automated/marclucchini/doctor.svg)](https://hub.docker.com/r/marclucchini/doctor)
 
 The Doctor API returns NHS Choices pages from a search such as "What are the symptoms of dystonia?".
 
@@ -10,11 +12,11 @@ The Doctor API returns NHS Choices pages from a search such as "What are the sym
 This will provision the Doctor application and a Bonsai Elasticsearch cluster on Heroku.
 This has been done already for the [ml-doctor](https://ml-doctor.herokuapp.com/swagger-ui.html) application.
 
+*Note: due to free dynos and addons limitations, a subset of NHS Choices conditions is indexed on Heroku.
+For all the conditions, run Doctor locally with Docker as described below.*
+
 ```
 heroku create ml-doctor
-heroku addons:create bonsai:sandbox-10
-heroku addons:create bonsai:sandbox-10
-heroku addons:create bonsai:sandbox-10
 heroku addons:create bonsai:sandbox-10
 git push heroku master
 open https://ml-doctor.herokuapp.com/swagger-ui.html

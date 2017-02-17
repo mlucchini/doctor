@@ -22,7 +22,7 @@ public class DocumentRepositoryTest {
   Path database;
 
   @Before
-  public void setup() throws IOException {
+  public void setUp() throws IOException {
     configuration = mock(ApplicationConfiguration.class);
     repository = new DocumentRepository(configuration);
     database = Files.createTempFile("db", "tmp").toAbsolutePath();

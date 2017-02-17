@@ -1,11 +1,6 @@
-buildscript {
-  repositories {
-    maven { url 'https://plugins.gradle.org/m2/' }
-  }
-  dependencies {
-    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE'
-    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.1'
-  }
+plugins {
+  id 'org.springframework.boot' version '1.5.1.RELEASE'
+  id 'org.sonarqube' version '2.2.1'
 }
 
 group 'com.marclucchini'
@@ -13,9 +8,8 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'checkstyle'
+apply plugin: 'pmd'
 apply plugin: 'jacoco'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'com.github.kt3k.coveralls'
 
 allprojects {
   sourceCompatibility = JavaVersion.VERSION_1_8
@@ -42,18 +36,27 @@ dependencies {
 
 checkstyle {
   toolVersion = '7.5.1'
-}
-
-jacocoTestReport {
-  reports {
-    xml.enabled true
-  }
-}
-
-tasks.withType(Checkstyle) {
   configFile rootProject.file('checkstyle.xml')
-  ignoreFailures false
 }
+
+pmd {
+  toolVersion = '5.5.3'
+  ruleSets = [
+      'java-basic',
+      'java-braces',
+      'java-clone',
+      'java-codesize',
+      'java-empty',
+      'java-finalizers',
+      'java-imports',
+      'java-junit',
+      'java-unnecessary',
+      'java-unusedcode'
+  ]
+}
+
+jacocoTestReport.reports.xml.enabled true
+test.finalizedBy(jacocoTestReport)
 
 task stage(dependsOn: ['clean', 'build'])
 build.mustRunAfter clean

@@ -16,7 +16,7 @@ public class EsClientFactoryTest {
   EsClientFactory factory;
 
   @Before
-  public void setup() {
+  public void setUp() {
     environment = mock(ApplicationEnvironment.class);
     factory = new EsClientFactory(environment);
   }

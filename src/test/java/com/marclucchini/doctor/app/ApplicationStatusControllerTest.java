@@ -26,7 +26,7 @@ public class ApplicationStatusControllerTest {
   ApplicationStatusController controller;
 
   @Before
-  public void setup() {
+  public void setUp() {
     crawlerService = mock(CrawlerService.class);
     repository = mock(DocumentRepository.class);
     esIndexer = mock(EsIndexer.class);

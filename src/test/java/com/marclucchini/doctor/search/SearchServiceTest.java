@@ -22,7 +22,7 @@ public class SearchServiceTest {
   SearchResult result;
 
   @Before
-  public void setup() {
+  public void setUp() {
     client = mock(JestClient.class);
     factory = mock(EsClientFactory.class);
     result = mock(SearchResult.class);

@@ -1,10 +1,38 @@
+sudo: required
+
 language: java
+
 jdk:
   - oraclejdk8
+
+services:
+  - docker
+
+addons:
+  sonarqube:
+    token:
+      secure: $SONARQUBE_API_KEY
+
+env:
+  global:
+    - DOCKER_REPOSITORY: marclucchini/doctor
+    - DOCKER_TAG: $(if [ "$TRAVIS_BRANCH" = "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi)
+
 after_success:
-  - ./gradlew jacocoTestReport coveralls
+  - ./gradlew sonarqube
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker build -t $DOCKER_REPOSITORY:$DOCKER_TAG .
+  - docker push $DOCKER_REPOSITORY:$DOCKER_TAG
+
 deploy:
   provider: heroku
   api-key:
     secure: $HEROKU_API_KEY
   app: ml-doctor
+
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+    - '$HOME/.gradle'
+    - '.gradle'

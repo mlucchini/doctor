@@ -12,7 +12,7 @@ public class DocumentTest {
     Assert.assertThat(new Document("url1", "title1", "text1"), equalTo(new Document("url1", "title1", "text1")));
     Assert.assertThat(new Document("url2", "title2", "text2"), equalTo(new Document("Url2", "title1", "text2")));
     Assert.assertThat(new Document("url1", "title1", "text1"), not(new Document("url2", "title1", "text1")));
-    Assert.assertThat(new Document("url2", "title2", "text2"), not(("url2")));
+    Assert.assertThat(new Document("url2", "title2", "text2"), not("url2"));
   }
 
   @Test

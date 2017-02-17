@@ -14,7 +14,7 @@ public class CrawlerFactoryTest {
   CrawlerFactory factory;
 
   @Before
-  public void setup() {
+  public void setUp() {
     ApplicationConfiguration configuration = mock(ApplicationConfiguration.class);
     DocumentRepository repository = mock(DocumentRepository.class);
     factory = new CrawlerFactory(configuration, repository);
