@@ -2,7 +2,7 @@
 [![Build Status](https://img.shields.io/travis/mlucchini/doctor.svg)](https://travis-ci.org/mlucchini/doctor)
 [![SonarQube Test Coverage](https://img.shields.io/sonar/https/sonarqube.com/com.marclucchini:doctor/coverage.svg)](https://sonarqube.com/dashboard?id=com.marclucchini:doctor)
 [![SonarQube Tech Debt](https://img.shields.io/sonar/https/sonarqube.com/com.marclucchini:doctor/tech_debt.svg)](https://sonarqube.com/dashboard?id=com.marclucchini:doctor)
-[![Heroku Deployment](https://heroku-badge.herokuapp.com/?app=ml-doctor&svg=1)](https://ml-doctor.herokuapp.com)
+[![Heroku Deployment](https://heroku-badge.herokuapp.com/?app=ml-doctor&root=swagger-ui.html&svg=1)](https://ml-doctor.herokuapp.com)
 [![Docker Automated Build](https://img.shields.io/docker/automated/marclucchini/doctor.svg)](https://hub.docker.com/r/marclucchini/doctor)
 
 The Doctor API returns NHS Choices pages from a search such as "What are the symptoms of dystonia?".
