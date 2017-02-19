@@ -41,18 +41,7 @@ checkstyle {
 
 pmd {
   toolVersion = '5.5.3'
-  ruleSets = [
-      'java-basic',
-      'java-braces',
-      'java-clone',
-      'java-codesize',
-      'java-empty',
-      'java-finalizers',
-      'java-imports',
-      'java-junit',
-      'java-unnecessary',
-      'java-unusedcode'
-  ]
+  ruleSetFiles = files("ruleset.xml")
 }
 
 jacocoTestReport.reports.xml.enabled true
