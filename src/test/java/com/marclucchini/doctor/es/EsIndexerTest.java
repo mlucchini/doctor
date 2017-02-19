@@ -28,7 +28,7 @@ public class EsIndexerTest {
   DocumentResult resultFailure;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() throws IOException {
     client = mock(JestClient.class);
     factory = mock(EsClientFactory.class);
     repository = mock(DocumentRepository.class);

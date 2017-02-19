@@ -25,13 +25,17 @@ public class CrawlerService {
   private DocumentRepository repository;
 
   public CrawlerService(CrawlerFactory crawlerFactory, ApplicationConfiguration configuration,
-                        DocumentRepository repository) throws Exception {
+                        DocumentRepository repository) {
     CrawlConfig config = new CrawlConfig();
     config.setCrawlStorageFolder(".");
     config.setUserAgentString("ml-doctor");
     PageFetcher pageFetcher = new PageFetcher(config);
     RobotstxtServer robotstxtServer = new RobotstxtServer(new RobotstxtConfig(), pageFetcher);
-    this.engine = new CrawlController(config, pageFetcher, robotstxtServer);
+    try {
+      this.engine = new CrawlController(config, pageFetcher, robotstxtServer);
+    } catch (Exception e) {
+      throw new CrawlerException("Could not initialise crawl", e);
+    }
     this.inProgress = new AtomicBoolean();
     this.crawlerFactory = crawlerFactory;
     this.configuration = configuration;

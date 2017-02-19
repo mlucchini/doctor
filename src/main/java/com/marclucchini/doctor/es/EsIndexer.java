@@ -49,7 +49,7 @@ public class EsIndexer {
       String conf = new Scanner(getClass().getResourceAsStream("index-nhs.json")).useDelimiter("\\A").next();
       JestResult result = client.execute(new CreateIndex(INDEX, conf));
       if (! result.isSucceeded()) {
-        throw new RuntimeException(result.getErrorMessage());
+        throw new EsCreateIndexException(result.getErrorMessage());
       }
       logger.info(String.format("Index %s was created", INDEX));
     }

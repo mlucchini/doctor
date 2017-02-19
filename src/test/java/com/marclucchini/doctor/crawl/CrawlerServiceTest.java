@@ -16,14 +16,14 @@ public class CrawlerServiceTest {
   CrawlerService crawlerService;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     crawlerFactory = mock(CrawlerFactory.class);
     configuration = mock(ApplicationConfiguration.class);
     repository = mock(DocumentRepository.class);
   }
 
   @Test
-  public void testConfigureCrawler() throws Exception {
+  public void testConfigureCrawler() {
     when(configuration.getSeed()).thenReturn("http://example.com");
     when(configuration.getParallelism()).thenReturn(42);
 

@@ -13,13 +13,13 @@ public class ApplicationStartupTest {
   ApplicationStartup startup;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     documentService = mock(DocumentService.class);
     startup = new ApplicationStartup(documentService);
   }
 
   @Test
-  public void testOnApplicationEvent() throws Exception {
+  public void testOnApplicationEvent() {
     startup.onApplicationEvent(mock(ApplicationReadyEvent.class));
 
     verify(documentService, times(1)).init();

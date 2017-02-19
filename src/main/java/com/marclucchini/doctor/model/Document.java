@@ -12,7 +12,7 @@ public class Document implements Comparable<Document> {
   private String html;
 
   public Document() {
-
+    // Empty constructor used by JSON deserialization mechanism
   }
 
   public Document(String url, String title, String html) {
