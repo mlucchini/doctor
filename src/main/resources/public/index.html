@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+  <link type="text/css" rel="stylesheet" media="screen,projection"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"/>
+  <style>
+    html, body, #search {
+      height: 100%;
+    }
+
+    #search-input {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    #query {
+      float: left;
+    }
+
+    .material-icons {
+      top: 0.3em;
+    }
+
+    .input-field input[type=text]:focus,
+    .input-field input[type=text]:focus.valid {
+      border-bottom: 1px solid #2196f3;
+      box-shadow: 0 1px 0 0 #2196f3;
+    }
+
+    .input-field .prefix.active {
+      color: #2196f3;
+    }
+
+    .input-field input[type=text].valid {
+      border-bottom: 1px solid #3f51b5;
+      box-shadow: 0 1px 0 0 #3f51b5;
+    }
+
+    .input-field .prefix {
+      color: #3f51b5;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NHS Choice Questions</title>
+</head>
+
+<body>
+<div id="search" class="container valign-wrapper">
+  <div id="search-input" class="row">
+    <form class="col s12">
+      <div class="input-field">
+        <input placeholder="How can we help you today?" id="query" type="text" class="validate">
+        <i class="material-icons prefix">search</i>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <ul id="results" class="collection"></ul>
+  </div>
+</div>
+<script>
+  window.onload = function() {
+    var moveQueryToTop = function() {
+      if (searchBox.hasClass('valign-wrapper')) {
+        searchBox.removeClass('valign-wrapper')
+      }
+    }
+
+    var request = function() {
+      var content = query.val()
+      if (content.length > 2) {
+        $.get('/search?query=' + content, response)
+      }
+    }
+
+    var response = function(data) {
+      var results = $('#results')
+      results.empty()
+      for (var i = 0; data && i < data.length; i++) {
+        results.append('<li class="collection-item"><a href="' + data[i].url + '">' + data[i].title + '</a></li>');
+      }
+    }
+
+    var query = $('#query')
+    var searchBox = $('#search')
+    query.on('keyup', function (e) {
+      moveQueryToTop()
+      request()
+    })
+  }
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+</body>
+</html>
